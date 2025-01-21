@@ -29,6 +29,7 @@ router.get('/', async (req, res) => {
 
 router.get("/new", async(req,res)=>{
     res.render("applications/job-applications/new")
+
 })
 
 router.post("/",async(req,res)=>{

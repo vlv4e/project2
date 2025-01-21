@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const ApplicationSchema = mongoose.Schema({
+
   userId: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
@@ -93,3 +94,4 @@ const ApplicationSchema = mongoose.Schema({
 const Applicant = mongoose.model('Applicant', ApplicationSchema);
 
 module.exports = Applicant;
+
