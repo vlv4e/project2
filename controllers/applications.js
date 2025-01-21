@@ -2,6 +2,12 @@ const express = require("express")
 const router = express.Router()
 
 const User = require('../models/user')
+const Applicant = require('../models/apllications')
+const Job = require('../models/jobs')
+const UserProfile = require('../models/userProfile')
+
+
+
 
 // ALl routes for application
 
@@ -22,7 +28,8 @@ router.get('/', async (req, res) => {
 
 
 router.get("/new", async(req,res)=>{
-    res.render("applications/new.ejs")
+    res.render("applications/job-applications/new")
+
 })
 
 router.post("/",async(req,res)=>{

@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
-const userProfileSchema = mongoose.Schema({
+const ApplicationSchema = mongoose.Schema({
+
   userId: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
@@ -90,6 +91,7 @@ const userProfileSchema = mongoose.Schema({
 });
 
 // Create the UserProfile model
-const UserProfile = mongoose.model('UserProfile', userProfileSchema);
+const Applicant = mongoose.model('Applicant', ApplicationSchema);
 
-module.exports = UserProfile;
+module.exports = Applicant;
+
