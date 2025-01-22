@@ -23,8 +23,7 @@ const userProfileSchema = mongoose.Schema({
     match: /.+\@.+\..+/ // Basic email 
   },
   skills: {
-    type: [String], // Array of skills
-    default: [] // Default to an empty array
+    type: String, // Array of skills
   },
   experience: [
     {
@@ -42,7 +41,7 @@ const userProfileSchema = mongoose.Schema({
       },
       endDate: {
         type: Date,
-        required: true
+        required: true 
       },
       description: {
         type: String,
