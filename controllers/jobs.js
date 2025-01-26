@@ -3,7 +3,22 @@
 const express = require('express');
 const jobsRouter = express.Router();
 
-const Job = require('../models/jobs'); // Ensure this file exists and is named correctly
+const Job = require('../models/jobs');
+
+//get all jobs
+jobsRouter.get("/", async(req,res)=>{
+    const allJobs = await Job.find()
+    console.log(Job)
+    res.render("applications/jobs/index.ejs",{allJobs: allJobs})
+
+})
+
+
+//Create jobs
+jobsRouter.get("/",(req,res)=>{
+    res.render("applications/jobs/new.ejs")
+})
+
 
 // Create a new job
 jobsRouter.post('/', async (req, res) => {
@@ -17,10 +32,12 @@ jobsRouter.post('/', async (req, res) => {
     }
 });
 
+
 // Render form to create a new job
 jobsRouter.get("/", (req, res) => {
     res.render("applications/jobs/new.ejs");
 });
+
 
 // Show a specific job
 jobsRouter.get('/:jobId', async (req, res) => {
@@ -52,6 +69,7 @@ jobsRouter.get('/:jobId/edit', async (req, res) => {
     }
 });
 
+
 // Update an existing job
 jobsRouter.put('/:jobId', async (req, res) => {
     try {
@@ -67,3 +85,4 @@ jobsRouter.put('/:jobId', async (req, res) => {
 });
 
 module.exports = jobsRouter;
+

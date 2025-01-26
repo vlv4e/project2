@@ -11,6 +11,9 @@
     <%- include("../../partials/navbar.ejs")%>
 
     <h1>Here is Jobs page</h1>
+    <% allJobs.forEach((oneJob)=>{%>
+        <li><a href="/jobs/<%= oneJob._id%>"><%=oneJob.jobTitle%></a></li>
+    <%})%>
     <a href="/jobs">Create New Job</a>
 
 

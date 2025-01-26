@@ -54,7 +54,10 @@ app.get("/", async (req, res) => {
 
 // Route handlers
 app.use('/auth', authController);
-app.use('/jobs', jobsController);
+app.use('/jobs', jobsController)
+
+app.use(isSignedIn)
+
 app.use('/user-profile-router', isSignedIn, userProfileController);
 app.use("/users/:userId/applications/", applicationsController);
 
