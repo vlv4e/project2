@@ -9,10 +9,10 @@
 </head>
 <body>
     <h2>Employer - New Job Post</h2>
-    <form action="/submit-job" method="POST">
+    <form action="/jobs" method="POST">
         <label for="jobTitle">Job Title:</label>
         <input type="text" id="jobTitle" name="jobTitle" required>
-        
+
         <label for="jobType">Job Type:</label>
         <select id="jobType" name="jobType" required>
             <option value="Full-time">Full-time</option>
@@ -20,10 +20,8 @@
             <option value="Contract">Contract</option>
             <option value="Internship">Internship</option>
         </select>
-        
         <label for="department">Department:</label>
         <input type="text" id="department" name="department" required>
-        
         <label for="period">Period:</label>
         <select id="period" name="period" required>
             <option value="Immediate">Immediate</option>
@@ -31,10 +29,8 @@
             <option value="2 months">2 months</option>
             <option value="3 months">3 months</option>
         </select>
-        
         <label for="expectedSalary">Expected Salary:</label>
         <input type="number" id="expectedSalary" name="expectedSalary" required min="0">
-        
         <label for="experience">Experience:</label>
         <select id="experience" name="experience" required>
             <option value="Fresher">Fresher</option>
@@ -42,15 +38,14 @@
             <option value="3-5 years">3-5 years</option>
             <option value="5+ years">5+ years</option>
         </select>
-        
         <label for="location">Location:</label>
         <input type="text" id="location" name="location" required>
-        
         <label for="jobDescription">Job Description:</label>
         <textarea id="jobDescription" name="jobDescription" required minlength="10"></textarea>
-        
+
         <button type="submit">Submit</button>
     </form>
 </body>
 </html>
+
 
