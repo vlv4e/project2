@@ -8,6 +8,8 @@ const morgan = require("morgan");
 require('dotenv').config()
 const mongoose = require("mongoose")
 const session = require('express-session');
+const userProfileController = require('./controllers/user-profile-router.js');
+
 
 
 
@@ -27,6 +29,8 @@ const port = process.env.PORT ? process.env.PORT : '3000';
 
 app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride('_method'));
+app.use('/user-profile-router', isSignedIn, userProfileController);
+
 // app.use(morgan('dev'));
 app.use(
   session({
@@ -58,23 +62,20 @@ mongoose.connect(process.env.MONGODB_URI)
 // 4. ROUTES
 // =======================
 
-app.get('/', (req, res) => {
-  // Check if the user is signed in
-  if (req.session.user) {
-    // Redirect signed-in users to their applications index
-    res.redirect(`/users/${req.session.user._id}/applications`);
-  } else {
-    // Show the homepage for users who are not signed in
-    res.render('index.ejs');
-  }
-});
+app.get("/", async (req, res) => {
+  console.log(req.session.user)
+  res.render("applications/jobseeker/index.ejs",{user:req.session.user}
+  )
+})
 
 
 app.use('/auth', authController);
 
 app.use(isSignedIn)
 
+
 app.use("/users/:userId/applications/",applicationsController)
+
 
 
 

@@ -1,20 +1,19 @@
-<!-- views/applications/index.ejs -->
+<!-- views/listings/index.ejs -->
 
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>Jobs Seeker</title>
+
   </head>
   <body>
-    <%- include("../partials/navbar.ejs")%>
-    <h1>Your Apps</h1>
-    <a href="/users/<%=user._id%>/applications/new">Add an App</a>
-    <% applications.forEach((oneApplication)=>{%>
-      <a href="/users/<%=user._id%>/applications/<%=oneApplication._id%>"> <li><%=oneApplication.title%> at <%= oneApplication.company%></li></a>
-     
-    <%})%>
+    <%- include("../../partials/navbar.ejs")%>
+
+    <h1>Here is User Profile page</h1>
+    <a href="/user-profile-router/new">Create your Profile</a>
 
   </body>
 </html>
