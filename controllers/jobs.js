@@ -5,6 +5,19 @@ const jobsRouter = express.Router();
 
 const Job = require('../models/jobs');
 
+//get all jobs
+jobsRouter.get("/", async(req,res)=>{
+    const allJobs = await Job.find()
+    console.log(Job)
+    res.render("applications/jobs/index.ejs",{allJobs: allJobs})
+
+})
+
+
+//Create jobs
+jobsRouter.get("/",(req,res)=>{
+    res.render("applications/jobs/new.ejs")
+})
 
 jobsRouter.post('/', async (req, res) => {
     req.body.owner = req.session.user._id;
@@ -12,9 +25,8 @@ jobsRouter.post('/', async (req, res) => {
     res.redirect("/");
   });
 
-jobsRouter.get("/",(req,res)=>{
-    res.render("applications/jobs/new.ejs")
-})
+
+  //Update Job
 
 jobsRouter.get('/:jobId/edit', async (req, res) => {
     try {
@@ -39,5 +51,5 @@ jobsRouter.get('/:jobId/edit', async (req, res) => {
     }
   });
 
-
+ 
 module.exports = jobsRouter;

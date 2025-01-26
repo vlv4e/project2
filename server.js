@@ -75,16 +75,6 @@ app.use('/jobs', jobsController)
 
 app.use(isSignedIn)
 
-
-
-
-
-
-
-
-
-
-
 // =======================
 // 5. LISTENING ON PORT 3000
 // =======================
