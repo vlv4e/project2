@@ -24,13 +24,14 @@ app.use(morgan("dev")); // Logs the requests in the terminal
 const isSignedIn = require("./middleware/is-signed-in.js")
 const passUserToView = require('./middleware/pass-user-to-view.js')
 const applicationsController = require('./controllers/applications.js');
+const jobsController = require('./controllers/jobs.js');
+
 const authController = require('./controllers/auth.js');
 const port = process.env.PORT ? process.env.PORT : '3000';
 
 app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride('_method'));
 app.use('/user-profile-router', isSignedIn, userProfileController);
-
 // app.use(morgan('dev'));
 app.use(
   session({
@@ -64,12 +65,13 @@ mongoose.connect(process.env.MONGODB_URI)
 
 app.get("/", async (req, res) => {
   console.log(req.session.user)
-  res.render("applications/jobseeker/index.ejs",{user:req.session.user}
+  res.render("applications/jobs/index.ejs",{user:req.session.user}
   )
 })
 
 
 app.use('/auth', authController);
+app.use('/jobs', jobsController)
 
 app.use(isSignedIn)
 
@@ -86,7 +88,7 @@ app.use(isSignedIn)
 // =======================
 // 5. LISTENING ON PORT 3000
 // =======================
-app.listen(3000, () => {
-  console.log('Listening on port 3000');
+app.listen(3001, () => {
+  console.log('Listening on port 3001');
 });
 
