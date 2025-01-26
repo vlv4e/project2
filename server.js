@@ -74,6 +74,9 @@ app.use('/auth', authController);
 app.use(isSignedIn)
 
 
+app.use("/users/:userId/applications/",applicationsController)
+
+
 
 
 

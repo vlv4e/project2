@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <%- include('../partials/navbar.ejs') %>
+
+    <h1>Application details</h1>
+    <%=application%>
+    <h1><%= application.title%> at <%=application.company%></h1>
+    <% if(application.notes){%>
+        <p>Notes:<%= application.notes%></p>
+
+    <%}%>
+    <% if(application.postingLink){%>
+        <p>Posting Link: <%=application.postingLink%></p>
+
+    <%}%>
+
+    <form action="/users/<%=user._id%>/applications/<%=application._id%>?_method=DELETE" method="POST">
+        <button>Delete Application</button>
+    </form>
+
+    <a href="/users/<%= user._id %>/applications/<%= application._id %>/edit">
+        Edit this application
+      </a>
+      
+
+</body>
+</html>
+
