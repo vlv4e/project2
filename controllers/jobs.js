@@ -1,25 +1,21 @@
-// controllers/jobs.js
-
 const express = require('express');
 const jobsRouter = express.Router();
-
 const Job = require('../models/jobs');
-
-//get all jobs
-jobsRouter.get("/", async(req,res)=>{
-    const allJobs = await Job.find()
-    console.log(Job)
-    res.render("applications/jobs/index.ejs",{allJobs: allJobs})
-
-})
-
-
-//Create jobs
-jobsRouter.get("/",(req,res)=>{
-    res.render("applications/jobs/new.ejs")
-})
-
-
+// Get all jobs
+jobsRouter.get("/", async (req, res) => {
+    try {
+        const allJobs = await Job.find(); // Fetch all jobs from the database
+        console.log(allJobs); // Log the fetched jobs
+        res.render("applications/jobs/index.ejs", { allJobs: allJobs }); // Pass allJobs to the view
+    } catch (error) {
+        console.log(error);
+        res.redirect('/'); // Redirect on error
+    }
+});
+// Render form to create a new job
+jobsRouter.get("/new", (req, res) => { // Change this line to a new path
+    res.render("applications/jobs/new.ejs");
+});
 // Create a new job
 jobsRouter.post('/', async (req, res) => {
     try {
@@ -31,14 +27,6 @@ jobsRouter.post('/', async (req, res) => {
         res.redirect('/'); // Redirect to home on error
     }
 });
-
-
-// Render form to create a new job
-jobsRouter.get("/", (req, res) => {
-    res.render("applications/jobs/new.ejs");
-});
-
-
 // Show a specific job
 jobsRouter.get('/:jobId', async (req, res) => {
     try {
@@ -52,7 +40,6 @@ jobsRouter.get('/:jobId', async (req, res) => {
         res.redirect('/');
     }
 });
-
 // Edit an existing job
 jobsRouter.get('/:jobId/edit', async (req, res) => {
     try {
@@ -68,8 +55,6 @@ jobsRouter.get('/:jobId/edit', async (req, res) => {
         res.redirect('/');
     }
 });
-
-
 // Update an existing job
 jobsRouter.put('/:jobId', async (req, res) => {
     try {
@@ -83,6 +68,4 @@ jobsRouter.put('/:jobId', async (req, res) => {
         res.redirect('/');
     }
 });
-
 module.exports = jobsRouter;
-
