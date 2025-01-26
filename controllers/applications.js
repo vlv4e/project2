@@ -1,7 +1,8 @@
 const express = require("express")
 const router = express.Router()
 
-const User = require('../models/user')
+const User = require('../models/user');
+const Applicant = require("../models/apllications");
 
 // ALl routes for application
 
@@ -11,6 +12,7 @@ router.get('/', async (req, res) => {
     try {
       const currentUser = await User.findById(req.session.user._id)
       console.log(currentUser)
+      const applications = await Applicant.find({userId:req.session.user._id})
 
       console.log(currentUser.applications)
       res.render('applications/index.ejs',{applications:currentUser.applications});
