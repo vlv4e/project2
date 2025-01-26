@@ -3,44 +3,67 @@
 const express = require('express');
 const jobsRouter = express.Router();
 
-const Job = require('../models/jobs');
+const Job = require('../models/jobs'); // Ensure this file exists and is named correctly
 
-
+// Create a new job
 jobsRouter.post('/', async (req, res) => {
-    req.body.owner = req.session.user._id;
-    await Job.create(req.body);
-    res.redirect("/");
-  });
+    try {
+        req.body.owner = req.session.user._id; // Set the owner to the logged-in user
+        const newJob = await Job.create(req.body); // Create the job
+        res.redirect(`/jobs/${newJob._id}`); // Redirect to the newly created job's show page
+    } catch (error) {
+        console.log(error);
+        res.redirect('/'); // Redirect to home on error
+    }
+});
 
-jobsRouter.get("/",(req,res)=>{
-    res.render("applications/jobs/new.ejs")
-})
+// Render form to create a new job
+jobsRouter.get("/", (req, res) => {
+    res.render("applications/jobs/new.ejs");
+});
 
+// Show a specific job
+jobsRouter.get('/:jobId', async (req, res) => {
+    try {
+        const currentJob = await Job.findById(req.params.jobId);
+        if (!currentJob) {
+            return res.status(404).send('Job not found');
+        }
+        res.render('applications/jobs/show.ejs', { job: currentJob }); // Pass the job to the view
+    } catch (error) {
+        console.log(error);
+        res.redirect('/');
+    }
+});
+
+// Edit an existing job
 jobsRouter.get('/:jobId/edit', async (req, res) => {
     try {
-      const currentJob = await Job.findById(req.params.jobId);
-      res.render('applications/jobs/edit.ejs', {
-        jobs: currentJob,
-      });
-
+        const currentJob = await Job.findById(req.params.jobId);
+        if (!currentJob) {
+            return res.status(404).send('Job not found');
+        }
+        res.render('applications/jobs/edit.ejs', {
+            job: currentJob, // Pass the current job to the view
+        });
     } catch (error) {
-      console.log(error);
-      res.redirect('/');
+        console.log(error);
+        res.redirect('/');
     }
-  });
+});
 
-
-  jobsRouter.put('/:jobId', async (req, res) => {
+// Update an existing job
+jobsRouter.put('/:jobId', async (req, res) => {
     try {
-      console.log('jobId:', req.params.jobId);
-      console.log('user:', req.session.user);
-      res.send(`A PUT request was issued for ${req.params.jobId}`);
+        const updatedJob = await Job.findByIdAndUpdate(req.params.jobId, req.body, { new: true }); // Update the job
+        if (!updatedJob) {
+            return res.status(404).send('Job not found');
+        }
+        res.redirect(`/jobs/${updatedJob._id}`); // Redirect to the updated job page
     } catch (error) {
-      console.log(error);
-      res.redirect('/');
+        console.log(error);
+        res.redirect('/');
     }
-  });
-
+});
 
 module.exports = jobsRouter;
-
