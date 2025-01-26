@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt'); // Commented out
 
 const User = require('../models/user.js');
 
@@ -32,8 +32,8 @@ router.post('/sign-up', async (req, res) => {
     }
   
     // Must hash the password before sending to the database
-    const hashedPassword = bcrypt.hashSync(req.body.password, 10);
-    req.body.password = hashedPassword;
+     const hashedPassword = bcrypt.hashSync(req.body.password, 10); // Commented out
+     req.body.password = hashedPassword; // Commented out
   
     // All ready to create the new user!
     await User.create(req.body);
@@ -55,12 +55,12 @@ router.post('/sign-in', async (req, res) => {
   
     // There is a user! Time to test their password with bcrypt
     const validPassword = bcrypt.compareSync(
-      req.body.password,
-      userInDatabase.password
-    );
-    if (!validPassword) {
-      return res.send('Login failed. Please try again.');
-    }
+       req.body.password,
+     userInDatabase.password
+     ); // Commented out
+     if (!validPassword) {
+       return res.send('Login failed. Please try again.');
+     } // Commented out
   
     // There is a user AND they had the correct password. Time to make a session!
     // Avoid storing the password, even in hashed format, in the session
