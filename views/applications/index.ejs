@@ -1,3 +1,4 @@
+
 <!-- views/applications/index.ejs -->
 
 <!DOCTYPE html>
@@ -16,5 +17,12 @@
      
     <%})%>
 
+    <a href="/users/<%=user._id%>/applications/jobs/new">Add an App</a>
+    <% if (applications){ applications.forEach((oneApplication)=>{%>
+      <a href="/users/<%=user._id%>/applications/<%=oneApplication._id%>"> <li><%=oneApplication.title%> at <%= oneApplication.company%></li></a>
+     
+    <%})}%>
+
   </body>
 </html>
+

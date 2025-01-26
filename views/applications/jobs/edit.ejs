@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-    <%- include('../partials/_navbar.ejs') %>
+    <%- include('../../partials/navbar.ejs') %>
   <h1>Edit <%= jobs.jobTitle %> at <%= jobs.company %></h1>
   <form action="/jobs/<%= jobs._id %>?_method=PUT" method="POST"></form>
 
@@ -46,17 +46,6 @@
     </form>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
 
 
 
