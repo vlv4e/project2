@@ -76,6 +76,9 @@ app.use('/jobs', jobsController)
 app.use(isSignedIn)
 
 
+app.use("/users/:userId/applications/",applicationsController)
+
+
 
 
 

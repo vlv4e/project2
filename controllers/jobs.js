@@ -22,11 +22,13 @@ jobsRouter.get('/:jobId/edit', async (req, res) => {
       res.render('applications/jobs/edit.ejs', {
         jobs: currentJob,
       });
+
     } catch (error) {
       console.log(error);
       res.redirect('/');
     }
   });
+
 
   jobsRouter.put('/:jobId', async (req, res) => {
     try {
@@ -41,3 +43,4 @@ jobsRouter.get('/:jobId/edit', async (req, res) => {
 
 
 module.exports = jobsRouter;
+
