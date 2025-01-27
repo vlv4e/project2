@@ -15,11 +15,13 @@
     <%allJobs.forEach((oneJob)=>{%>
         <li><a href="/jobs/<%= oneJob._id%>"><%=oneJob.jobTitle%></a></li>
     <%})%>
+
     <%}%>
     <%if(user){%>
       <a href="/jobs/create">Create New Job</a>
 
     <%}%>
+
 
 
   </body>
