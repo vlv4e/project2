@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Details</title>
+</head>
+<body>
+    <%- include('../../partials/navbar.ejs') %> <!-- Correct the path -->
+
+    <h1>Job Details</h1>
+    <h2><%= job.jobTitle %> at <%= job.location %></h2>
+    
+    <p>Type: <%= job.jobType %></p>
+    <p>Department: <%= job.department %></p>
+    <p>Period: <%= job.period %></p>
+    <p>Expected Salary: $<%= job.expectedSalary %></p>
+    <p>Experience Required: <%= job.experience %></p>
+    <p>Description: <%= job.jobDescription %></p>
+
+    <!-- <form action="/jobs/<%= job._id %>?_method=DELETE" method="POST"> -->
+        <!-- <button>Delete Job</button> -->
+    <!-- </form> -->
+    <a href="/jobs/<%=job._id%>/edit">Update Job</a>
+
+</body>
+</html>

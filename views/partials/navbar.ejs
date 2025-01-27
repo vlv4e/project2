@@ -1,0 +1,13 @@
+<!-- partials/_navbar.ejs -->
+<!-- ADD THE REST OF THE ROUTES FILES AS A LINK -->
+
+<nav>
+    <% if (user) { %>
+    <a href="/jobs">View all Jobs</a>
+    <a href="/auth/sign-out">Sign Out</a>
+    <% } else { %>
+    <a href="/auth/sign-up">Sign Up</a>
+    <a href="/auth/sign-in">Sign In</a>
+    <% } %>
+  </nav>
+  
