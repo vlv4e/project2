@@ -11,6 +11,18 @@ jobsRouter.get("/", async(req,res)=>{
 
 })
 
+//delete job
+jobsRouter.delete("/:jobId",async (req,res)=>{
+    try{
+        await Job.findByIdAndDelete(req.params.jobId)
+
+      res.redirect('/jobs')
+  
+    }catch(error){
+      console.log(error)
+      res.redirect("/")
+    }
+  })
 
 //Create jobs
 jobsRouter.get("/create",(req,res)=>{
@@ -63,15 +75,15 @@ jobsRouter.get('/:jobId/edit', async (req, res) => {
 jobsRouter.put('/:jobId', async (req, res) => {
     try {
         const updatedJob = await Job.findByIdAndUpdate(req.params.jobId, req.body); // Update the job
-      
-
         if (!updatedJob) {
             return res.status(404).send('Job not found');
         }
-        res.redirect(`applications/jobs/${updatedJob._id}`); // Redirect to the updated job page
+        res.redirect(`/jobs/${updatedJob._id}`); // Redirect to the updated job page
     } catch (error) {
         console.log(error);
         res.redirect('/');
     }
 });
+
+
 module.exports = jobsRouter;
