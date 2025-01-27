@@ -8,14 +8,14 @@ const Job = require('../models/jobs');
 //get all jobs
 jobsRouter.get("/", async(req,res)=>{
     const allJobs = await Job.find()
-    console.log(Job)
+    console.log(allJobs)
     res.render("applications/jobs/index.ejs",{allJobs: allJobs})
 
 })
 
 
 //Create jobs
-jobsRouter.get("/",(req,res)=>{
+jobsRouter.get("/create",(req,res)=>{
     res.render("applications/jobs/new.ejs")
 })
 
@@ -42,6 +42,7 @@ jobsRouter.get("/", (req, res) => {
 // Show a specific job
 jobsRouter.get('/:jobId', async (req, res) => {
     try {
+        console.log("in create")
         const currentJob = await Job.findById(req.params.jobId);
         if (!currentJob) {
             return res.status(404).send('Job not found');

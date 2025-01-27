@@ -109,8 +109,5 @@ router.put("/:applicationId",async(req,res)=>{
   await currentUser.save()
 
   res.redirect(`/users/${currentUser._id}/applications/${req.params.applicationId}`)
-
 })
-
-
 module.exports = router
