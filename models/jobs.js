@@ -47,5 +47,4 @@ const jobsSchema = mongoose.Schema({
 
 const Job = mongoose.model('Job', jobsSchema);
 
-
 module.exports = Job;

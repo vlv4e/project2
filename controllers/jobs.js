@@ -1,21 +1,24 @@
 const express = require('express');
 const jobsRouter = express.Router();
 const Job = require('../models/jobs');
-// Get all jobs
-jobsRouter.get("/", async (req, res) => {
-    try {
-        const allJobs = await Job.find(); // Fetch all jobs from the database
-        console.log(allJobs); // Log the fetched jobs
-        res.render("applications/jobs/index.ejs", { allJobs: allJobs }); // Pass allJobs to the view
-    } catch (error) {
-        console.log(error);
-        res.redirect('/'); // Redirect on error
-    }
-});
-// Render form to create a new job
-jobsRouter.get("/new", (req, res) => { // Change this line to a new path
-    res.render("applications/jobs/new.ejs");
-});
+
+
+//get all jobs
+jobsRouter.get("/", async(req,res)=>{
+    const allJobs = await Job.find()
+    console.log(allJobs)
+    res.render("applications/jobs/index.ejs",{allJobs: allJobs})
+
+})
+
+
+//Create jobs
+jobsRouter.get("/create",(req,res)=>{
+    res.render("applications/jobs/new.ejs")
+})
+
+
+
 // Create a new job
 jobsRouter.post('/', async (req, res) => {
     try {
@@ -30,6 +33,7 @@ jobsRouter.post('/', async (req, res) => {
 // Show a specific job
 jobsRouter.get('/:jobId', async (req, res) => {
     try {
+        console.log("in create")
         const currentJob = await Job.findById(req.params.jobId);
         if (!currentJob) {
             return res.status(404).send('Job not found');
