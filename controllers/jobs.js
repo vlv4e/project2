@@ -48,8 +48,8 @@ jobsRouter.get('/:jobId/edit', async (req, res) => {
             return res.status(404).send('Job not found');
         }
         res.render('applications/jobs/edit.ejs', {
-            job: currentJob, // Pass the current job to the view
-        });
+            currentJob // Pass the current job to the view
+});
     } catch (error) {
         console.log(error);
         res.redirect('/');
@@ -62,7 +62,7 @@ jobsRouter.put('/:jobId', async (req, res) => {
         if (!updatedJob) {
             return res.status(404).send('Job not found');
         }
-        res.redirect(`/jobs/${updatedJob._id}`); // Redirect to the updated job page
+        res.redirect(`applications/jobs/${updatedJob._id}`); // Redirect to the updated job page
     } catch (error) {
         console.log(error);
         res.redirect('/');
