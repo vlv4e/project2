@@ -58,7 +58,9 @@ jobsRouter.get('/:jobId/edit', async (req, res) => {
 // Update an existing job
 jobsRouter.put('/:jobId', async (req, res) => {
     try {
-        const updatedJob = await Job.findByIdAndUpdate(req.params.jobId, req.body, { new: true }); // Update the job
+        const updatedJob = await Job.findByIdAndUpdate(req.params.jobId, req.body); // Update the job
+      
+
         if (!updatedJob) {
             return res.status(404).send('Job not found');
         }
