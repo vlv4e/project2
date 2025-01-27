@@ -10,6 +10,9 @@ const mongoose = require("mongoose");
 const session = require('express-session');
 const path = require("path");
 
+// Import the Job model
+const Job = require('./models/jobs'); 
+
 // Controllers
 const userProfileController = require('./controllers/user-profile-router.js');
 const applicationsController = require('./controllers/applications.js');
@@ -48,8 +51,21 @@ mongoose.connect(process.env.MONGODB_URI)
 // 4. ROUTES
 // =======================
 app.get("/", async (req, res) => {
-  console.log(req.session.user);
-  res.render("applications/jobs/index.ejs", { user: req.session.user });
+  try {
+    console.log(req.session.user);
+
+    // Fetch all jobs from the database
+    const allJobs = await Job.find();  
+
+    res.render("applications/jobs/index.ejs", {
+      user: req.session.user, 
+      allJobs: allJobs  // Pass jobs to the EJS template
+    });
+
+  } catch (error) {
+    console.error("Error fetching jobs:", error);
+    res.status(500).send("Error retrieving jobs");
+  }
 });
 
 // Route handlers

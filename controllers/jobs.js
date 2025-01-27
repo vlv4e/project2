@@ -11,6 +11,18 @@ jobsRouter.get("/", async(req,res)=>{
 
 })
 
+//delete job
+jobsRouter.delete("/:jobId",async (req,res)=>{
+    try{
+        await Job.findByIdAndDelete(req.params.jobId)
+
+      res.redirect('/jobs')
+  
+    }catch(error){
+      console.log(error)
+      res.redirect("/")
+    }
+  })
 
 //Create jobs
 jobsRouter.get("/create",(req,res)=>{
@@ -72,4 +84,6 @@ jobsRouter.put('/:jobId', async (req, res) => {
         res.redirect('/');
     }
 });
+
+
 module.exports = jobsRouter;
