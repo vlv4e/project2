@@ -10,7 +10,7 @@
     <%- include("../../partials/navbar.ejs")%>
 
     <h1>Here is Jobs page</h1>
-    <%if (!allJobs){%>
+    <%if (allJobs){%>
 
     <%allJobs.forEach((oneJob)=>{%>
         <li><a href="/jobs/<%= oneJob._id%>"><%=oneJob.jobTitle%></a></li>
