@@ -14,7 +14,7 @@ router.get('/sign-in', (req, res) => {
 
 router.get('/sign-out', (req, res) => {
   req.session.destroy();
-  res.redirect('/');
+  res.redirect('auth/sign-in.ejs');
 });
 
 router.post('/sign-up', async (req, res) => {
