@@ -18,7 +18,6 @@ const userProfileController = require('./controllers/user-profile-router.js');
 const applicationsController = require('./controllers/applications.js');
 const jobsController = require('./controllers/jobs.js');
 const authController = require('./controllers/auth.js');
-const userProfileController = require('./controllers/user-profile-router.js');
 
 
 // Middleware
@@ -73,7 +72,6 @@ app.get("/", async (req, res) => {
 // Route handlers
 app.use('/auth', authController);
 app.use('/jobs', jobsController);
-app.use('/user-profile-router', userProfileController)
 
 
 app.use(isSignedIn)
