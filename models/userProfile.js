@@ -25,56 +25,23 @@ const userProfileSchema = mongoose.Schema({
   skills: {
     type: String, // Array of skills
   },
-  experience: [
-    {
-      jobTitle: {
+  experience: {
         type: String,
-        required: true
+        required: true,
+        minlength: 10 
       },
-      company: {
+  
+    degree: {
+      type: String,
+      enum: ['Master degree', 'Bachelor degree', 'Highschool'], 
+      required: true
+    },
+    education: {
         type: String,
-        required: true
+        required: true,
+        minlength: 10 
       },
-      startDate: {
-        type: Date,
-        required: true
-      },
-      endDate: {
-        type: Date,
-        required: true 
-      },
-      description: {
-        type: String,
-        trim: true,
-        maxlength: 500 // Maximum length for experience description
-      }
-    }
-  ],
-  education: [
-    {
-      degree: {
-        type: String,
-        required: true
-      },
-      institution: {
-        type: String,
-        required: true
-      },
-      startDate: {
-        type: Date,
-        required: true
-      },
-      endDate: {
-        type: Date,
-        required: true
-      },
-      description: {
-        type: String,
-        trim: true,
-        maxlength: 500 // Maximum length for education description
-      }
-    }
-  ],
+  
   createdAt: {
     type: Date,
     default: Date.now // Sets the date when the profile was created
