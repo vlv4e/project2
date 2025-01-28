@@ -13,6 +13,9 @@
 
         <label for="jobTitle">Job Title:</label>
         <input type="text" id="jobTitle" value="<%= currentJob.jobTitle %>" name="jobTitle" required>
+        
+        <label for="company">Company:</label>
+        <input type="text" id="company" value="<%= currentJob.company %>" name="company" required>
         <label for="jobType">Job Type:</label>
         <select id="jobType"  name="jobType" required>
             <option value="Full-time" <%= currentJob.jobType === "Full-time" ? "selected" : "" %>
@@ -41,6 +44,10 @@
         </select>
         <label for="location">Location:</label>
         <input type="text" id="location" value="<%= currentJob.location %>" name="location" required>
+
+        <label for="jobDeadline">Job Application Deadline:</label>
+        <input type="date" id="jobDeadline" name="jobDeadline" value="<%= currentJob.jobDeadline %>" required>
+
         <label for="jobDescription">Job Description:</label>
         <textarea id="jobDescription" name="jobDescription" required minlength="10"><%= currentJob.jobDescription %></textarea>
         <button type="submit">Save</button>
