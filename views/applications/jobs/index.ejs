@@ -4,25 +4,62 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/job-index.css">
     <title>User page</title>
   </head>
   <body>
     <%- include("../../partials/navbar.ejs")%>
+    <br>
+    <div id="search-area">
+        <!-- <input type="text" id="searchJob" placeholder="Search for a job..." /> -->
+        <input type="text" id="searchJob" placeholder="Search for a job..." />
+        <!-- <input type="text" id="searchCategory" placeholder="Search for a job..." /> -->
+    </div>
+
 
     <h1>Here is Jobs page</h1>
-    <%if (allJobs){%>
+    
+    <% if (allJobs) { %>
+        <ul class="job-list">
+            <% allJobs.forEach((oneJob) => { %>
+                <li class="job-item">
+                    <a href="/jobs/<%= oneJob._id %>" class="job-link">
+                        <div class="job-content">
+                            <h2 class="job-title"><%= oneJob.jobTitle %></h2>
+                            <p class="job-company"><%= oneJob.company %></p>
+                            <p class="job-location"><%= oneJob.location %></p>
+                            <p class="job-salary">$<%= oneJob.expectedSalary %></p>
+                            <p class="job-type"><%= oneJob.jobType %></p>
+                            <p class="job-deadline">Date Line: <%= oneJob.jobDeadline %></p>
+                            <button class="apply-button">Show Details</button>
+                        </div>
+                    </a>
+                </li>
+            <% }) %>
+        </ul>
+    <% } %>
 
-    <%allJobs.forEach((oneJob)=>{%>
-        <li><a href="/jobs/<%= oneJob._id%>"><%=oneJob.jobTitle%></a></li>
-    <%})%>
-
-    <%}%>
     <%if(user){%>
       <a href="/jobs/create">Create New Job</a>
 
     <%}%>
 
-
+    <script>
+        document.getElementById('searchInput').addEventListener('input', function() {
+          const searchQuery = this.value.toLowerCase();
+          const jobItems = document.querySelectorAll('.job-item');
+  
+          jobItems.forEach(function(jobItem) {
+            const jobTitle = jobItem.querySelector('.job-title').textContent.toLowerCase();
+  
+            if (jobTitle.includes(searchQuery)) {
+              jobItem.style.display = 'block';
+            } else {
+              jobItem.style.display = 'none';
+            }
+          });
+        });
+      </script>
 
   </body>
 </html>
