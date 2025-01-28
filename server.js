@@ -19,6 +19,7 @@ const applicationsController = require('./controllers/applications.js');
 const jobsController = require('./controllers/jobs.js');
 const authController = require('./controllers/auth.js');
 
+
 // Middleware
 const isSignedIn = require("./middleware/is-signed-in.js");
 const passUserToView = require('./middleware/pass-user-to-view.js');
@@ -70,7 +71,8 @@ app.get("/", async (req, res) => {
 
 // Route handlers
 app.use('/auth', authController);
-app.use('/jobs', jobsController)
+app.use('/jobs', jobsController);
+
 
 app.use(isSignedIn)
 

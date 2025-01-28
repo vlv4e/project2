@@ -77,16 +77,16 @@ body {
   }
 
 #searchInput{
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
+    width: 30% !important;
+    padding: 10px !important;
+    margin-bottom: 10px !important;
+    border: 1px solid #ccc !important;
+    border-radius: 5px !important;
+    font-size: 16px !important;
   }
 
-  /* #searchCategory{
-    width: 33.33%;
+  #searchCategory{
+    width: 30%;
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
@@ -95,13 +95,13 @@ body {
   }
 
   #searchLocation{
-    width: 33.33%;
+    width: 30%;
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
-  } */
+  } 
 
 /* Navbar styles */
 nav {
