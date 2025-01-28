@@ -1,3 +1,4 @@
+
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
@@ -72,7 +73,7 @@ body {
     background-color: #0056b3;
   }
   
-  a {
+  /* a {
     display: block;
     text-align: center;
     margin-top: 15px;
@@ -80,9 +81,38 @@ body {
     font-size: 16px;
     text-decoration: none;
     transition: color 0.3s;
-  }
+  } */
   
   a:hover {
     color: #0056b3;
   }
-  
+  /* Navbar styles */
+nav {
+  background-color: rgba(30, 30, 30, 0.8);
+  padding: 1rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+nav ul li {
+  display: inline;
+}
+
+nav a {
+  color: #e4e4e7;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav a.active {
+  text-decoration: underline;
+}
