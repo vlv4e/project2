@@ -53,4 +53,4 @@ To get started with the project locally, you may clone the repository
 
 **Clone the repository:**
    ```bash
-   git clone https://github.com/your-repository-url.git
+   git clone https://github.com/vlv4e/project2.git
