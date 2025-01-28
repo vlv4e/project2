@@ -1,4 +1,4 @@
-# Jobs Portal Project
+# Seek - Jobs Portal Project
 
 Welcome to the Jobs Portal Project! This project aims to connect employers with potential job seekers by allowing employers to post jobs and users to create profiles and apply for jobs.
 
