@@ -1,5 +1,5 @@
 # Seek - Jobs Portal Project
-![Seek Logo](https://ga-tamkeenbh.slack.com/files/U080ANH7P60/F08AG9MBUMQ/img_0632.jpg)
+![Seek Logo](https://github.com/vlv4e/project2/blob/dev/public/images/logo.png?raw=true)
 
 Welcome to the Jobs Portal Project! This project aims to connect employers with potential job seekers by allowing employers to post jobs and users to create profiles and apply for jobs.
 
