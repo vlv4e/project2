@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Job Details</title>
     <link rel="stylesheet" href="/show.css">
+    <link rel="stylesheet" href="/navbar.css">
+
 </head>
 <body>
     <%- include('../../partials/navbar.ejs') %> <!-- Correct the path -->
@@ -39,11 +41,27 @@
         </tr>
         <tr>
             <td><strong>Job Posted at:</strong></td>
-            <td><%= job.createdAt %></td>
+            <td><%
+                const createDate = new Date(job.createdAt);
+                const formattedDate1 = createDate.toLocaleDateString('en-GB', {
+                    day: '2-digit',
+                    month: 'short',
+                    year: 'numeric'
+                }).replace(/ /g, ' ');
+            %>
+            <%= formattedDate1 %></td>
         </tr>
         <tr>
             <td><strong>Job Application Deadline:</strong></td>
-            <td><%= job.jobDeadline %></td>
+            <td><%
+                const deadlineDate = new Date(job.jobDeadline);
+                const formattedDate2 = deadlineDate.toLocaleDateString('en-GB', {
+                    day: '2-digit',
+                    month: 'short',
+                    year: 'numeric'
+                }).replace(/ /g, ' ');
+            %>
+            <%= formattedDate2 %></td>
         </tr>
     </table>
 
@@ -54,3 +72,12 @@
     <a href="/jobs/<%= job._id %>/edit" class="update-link">Update Job</a>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
