@@ -1,13 +1,21 @@
-<!-- partials/_navbar.ejs -->
-<!-- ADD THE REST OF THE ROUTES FILES AS A LINK -->
-
 <nav>
-    <% if (user) { %>
-    <a href="/jobs">View all Jobs</a>
-    <a href="/auth/sign-out">Sign Out</a>
-    <% } else { %>
-    <a href="/auth/sign-up">Sign Up</a>
-    <a href="/auth/sign-in">Sign In</a>
-    <% } %>
-  </nav>
+    <div class="navbar-container">
+      <!-- Logo at the most left -->
+      <div class="navbar-brand">
+        <a href="/">
+          <img src="/images/logo.png" alt="JobEntry Logo" class="logo">
+        </a>
+      </div>
   
+      <!-- Navigation Links -->
+      <ul class="navbar-links">
+        <% if (user) { %>
+          <li><a href="/jobs">View all Jobs</a></li>
+          <li><a href="/auth/sign-out">Sign Out</a></li>
+        <% } else { %>
+          <li><a href="/auth/sign-up">Sign Up</a></li>
+          <li><a href="/auth/sign-in">Sign In</a></li>
+        <% } %>
+      </ul>
+    </div>
+  </nav>

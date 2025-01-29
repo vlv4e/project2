@@ -94,4 +94,3 @@ const ApplicationSchema = mongoose.Schema({
 const Applicant = mongoose.model('Applicant', ApplicationSchema);
 
 module.exports = Applicant;
-

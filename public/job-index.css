@@ -9,9 +9,9 @@ body {
 .job-list {
     list-style: none;
     padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two columns */
+    gap: 20px; /* Space between items */
 }
 
 .job-item {
@@ -45,7 +45,7 @@ body {
     color: #333;
 }
 
-.job-company, .job-location, .job-salary, .job-type, .job-deadline {
+.job-company, .job-location, .job-salary, .job-type, .job-deadline, .job-department {
     margin: 0;
     font-size: 16px;
     color: #666;
@@ -66,70 +66,75 @@ body {
     background-color: #0056b3;
 }
 
-#search-area{
-    width: 100%;
+#search-area {
+    width: 97%;
     padding: 10px;
+    margin-right: 2px;
     padding-bottom: 0px;
     padding-top: 7px;
+    margin-top: 35px;
     background-color: #323232;
     border-radius: 5px;
+    align-items: center;
+}
 
-  }
-
-#searchInput{
-    width: 30% !important;
-    padding: 10px !important;
-    margin-bottom: 10px !important;
-    border: 1px solid #ccc !important;
-    border-radius: 5px !important;
-    font-size: 16px !important;
-  }
-
-  #searchCategory{
+#searchInput, #searchDepartment, #searchLocation {
     width: 30%;
     padding: 10px;
+    margin-right: 10px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
-  }
+}
 
-  #searchLocation{
-    width: 30%;
+#create-job {
+    width: 97%;
+    height: 100px;
     padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
+    margin-right: 2px;
+    padding-bottom: 0px;
+    padding-top: 7px;
+    margin-top: 20px;
+    background-color: #323232;
     border-radius: 5px;
-    font-size: 16px;
-  } 
+    align-items: center;
+    bottom: 0px;
+}
 
-/* Navbar styles */
-nav {
-    background-color: rgba(30, 30, 30, 0.8);
-    padding: 1rem;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-  }
-  
-  nav ul {
-    list-style: none;
+#create-job {
     display: flex;
-    justify-content: flex-end;
-    gap: 1rem;
+    flex-direction: column;
+    align-items: center; /* Center content horizontally */
+    justify-content: center; /* Center content vertically */
+    text-align: center; /* Center text */
+    padding: 20px; /* Add some padding */
   }
   
-  nav ul li {
-    display: inline;
+  .new-job-h {
+    margin-bottom: 20px; /* Add space below the heading */
   }
   
-  nav a {
-    color: #e4e4e7;
-    text-decoration: none;
-    font-weight: bold;
+  .create-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    text-decoration: none; /* Remove underline from link */
+    transition: background-color 0.3s ease; /* Smooth hover transition */
   }
   
-  nav a.active {
-    text-decoration: underline;
+  .create-button:hover {
+    background-color: #0056b3;
   }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .job-list {
+        grid-template-columns: 1fr; /* Single column on smaller screens */
+    }
+}
+
