@@ -5,19 +5,76 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/job-index.css">
+    <link rel="stylesheet" href="/navbar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <title>User page</title>
+    <style>
+      /* Additional CSS for the new sections */
+      .user-greeting {
+        margin-top: 66px;
+margin-left: 10px;
+        text-align: left;
+        font-size: 24px;
+        color: #333;
+      }
+
+      .carousel {
+        width: 97%;
+        height: 270px; /* Updated height */
+        margin: 20px auto;
+        overflow: hidden;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        position: relative;
+      }
+
+      .carousel-inner {
+        display: flex;
+        width: 300%; /* 3 photos = 300% width */
+        height: 100%;
+        animation: slide 30s infinite; /* 10s per photo * 3 photos = 30s total */
+      }
+
+      .carousel img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        flex-shrink: 0;
+      }
+
+      @keyframes slide {
+        0% { transform: translateX(0%); }
+        33.33% { transform: translateX(-100%); }
+        66.66% { transform: translateX(-200%); }
+        100% { transform: translateX(0%); }
+      }
+    </style>
   </head>
   <body>
     <%- include("../../partials/navbar.ejs")%>
-    <br>
-    <div id="search-area">
-        <input type="text" id="searchInput" placeholder="Search for a job..." />
-        <input type="text" id="searchCategory" placeholder="Search for a job..." />
-        <input type="text" id="searchLocation" placeholder="Search for a job..." />
+
+    <!-- User Greeting Section -->
+    <div class="user-greeting">
+      <!-- <strong>Hello, </strong>  <%= user.username %> -->
     </div>
 
+    <!-- Carousel Section -->
+    <div class="carousel">
+      <div class="carousel-inner">
+        <img src="/path/to/photo1.jpg" alt="Photo 1">
+        <img src="/path/to/photo2.jpg" alt="Photo 2">
+        <img src="/path/to/photo3.jpg" alt="Photo 3">
+      </div>
+    </div>
 
-    <h1>Here is Jobs page</h1>
+    <br>
+    <div id="search-area">
+        <input type="text" id="searchInput" placeholder="Search for a Job..." />
+        <input type="text" id="searchDepartment" placeholder="Search by Department..." />
+        <input type="text" id="searchLocation" placeholder="Search by Location..." />
+    </div>
+
+    <h1>Job List</h1>
     
     <% if (allJobs) { %>
         <ul class="job-list">
@@ -27,10 +84,23 @@
                         <div class="job-content">
                             <h2 class="job-title"><%= oneJob.jobTitle %></h2>
                             <p class="job-company"><%= oneJob.company %></p>
-                            <p class="job-location"><%= oneJob.location %></p>
-                            <p class="job-salary">$<%= oneJob.expectedSalary %></p>
-                            <p class="job-type"><%= oneJob.jobType %></p>
-                            <p class="job-deadline">Date Line: <%= oneJob.jobDeadline %></p>
+                            <p class="job-department"><i class="fa-solid fa-building"></i>&nbsp;&nbsp;<%= oneJob.department%></p>
+                            <p class="job-location"><i class="fa-solid fa-location-dot"></i>&nbsp;&nbsp;<%= oneJob.location %></p>
+                            <p class="job-salary"><i class="fa-solid fa-money-bill"></i>&nbsp;&nbsp;<%= oneJob.expectedSalary %> BHD</p>
+                            <p class="job-type"><i class="fa-regular fa-clock">&nbsp;&nbsp;</i><%= oneJob.jobType %></p>
+                            <p class="job-deadline">
+                                <i class="fa-solid fa-calendar-days"></i>&nbsp;&nbsp;Date Line: 
+                                <%
+                                    const deadlineDate = new Date(oneJob.jobDeadline);
+                                    const formattedDate = deadlineDate.toLocaleDateString('en-GB', {
+                                        day: '2-digit',
+                                        month: 'short',
+                                        year: 'numeric'
+                                    }).replace(/ /g, ' ');
+                                %>
+                                <%= formattedDate %>
+                            </p>
+                            <br>
                             <button class="apply-button">Show Details</button>
                         </div>
                     </a>
@@ -39,12 +109,15 @@
         </ul>
     <% } %>
 
-    <%if(user){%>
-      <a href="/jobs/create">Create New Job</a>
-
-    <%}%>
+    <div id="create-job">
+        <% if (user) { %>
+          <h3 class="new-job-h" style="color: white;">Want to Create a New Job?</h3>
+          <a class="create-button" href="/jobs/create">Create New Job</a>
+        <% } %>
+      </div>
 
     <script>
+        //searching with job name
         document.getElementById('searchInput').addEventListener('input', function() {
           const searchQuery = this.value.toLowerCase();
           const jobItems = document.querySelectorAll('.job-item');
@@ -59,8 +132,38 @@
             }
           });
         });
-      </script>
 
+        //searching with department name
+        document.getElementById('searchDepartment').addEventListener('input', function() {
+          const depQuery = this.value.toLowerCase();
+          const jobItems = document.querySelectorAll('.job-item');
+  
+          jobItems.forEach(function(jobItem) {
+            const jobTitle = jobItem.querySelector('.job-department').textContent.toLowerCase();
+  
+            if (jobTitle.includes(depQuery)) {
+              jobItem.style.display = 'block';
+            } else {
+              jobItem.style.display = 'none';
+            }
+          });
+        });
+
+        //search by location
+        document.getElementById('searchLocation').addEventListener('input', function() {
+          const locQuery = this.value.toLowerCase();
+          const jobItems = document.querySelectorAll('.job-item');
+  
+          jobItems.forEach(function(jobItem) {
+            const jobTitle = jobItem.querySelector('.job-location').textContent.toLowerCase();
+  
+            if (jobTitle.includes(locQuery)) {
+              jobItem.style.display = 'block';
+            } else {
+              jobItem.style.display = 'none';
+            }
+          });
+        });
+      </script>
   </body>
 </html>
-
