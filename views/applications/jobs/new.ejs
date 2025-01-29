@@ -1,13 +1,17 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>New Job Post</title>
-    <link rel="stylesheet" href="/styles.css">
+      <link rel="stylesheet" href="/edit-style.css">
+      <link rel="stylesheet" href="/navbar.css">
+
+
 </head>
 <body>
+    <%- include("../../partials/navbar.ejs")%>
+
     <h2>Employer - New Job Post</h2>
     <form action="/jobs" method="POST">
         <label for="jobTitle">Job Title:</label>
@@ -41,6 +45,10 @@
         </select>
         <label for="location">Location:</label>
         <input type="text" id="location" name="location" required>
+
+        <label for="jobDeadline">Job Application Deadline:</label>
+        <input type="date" id="jobDeadline" name="jobDeadline" required>
+
         <label for="jobDescription">Job Description:</label>
         <textarea id="jobDescription" name="jobDescription" required minlength="10"></textarea>
 

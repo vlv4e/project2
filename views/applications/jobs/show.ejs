@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Job Details</title>
+    <link rel="stylesheet" href="/show.css">
+    <link rel="stylesheet" href="/navbar.css">
+
 </head>
 <body>
     <%- include('../../partials/navbar.ejs') %> <!-- Correct the path -->
@@ -11,17 +14,70 @@
     <h1>Job Details</h1>
     <h2><%= job.jobTitle %> at <%= job.company %></h2>
     
-    <p>Type: <%= job.jobType %></p>
-    <p>Department: <%= job.department %></p>
-    <p>Period: <%= job.period %></p>
-    <p>Expected Salary: $<%= job.expectedSalary %></p>
-    <p>Experience Required: <%= job.experience %></p>
-    <p>Description: <%= job.jobDescription %></p>
+    <table class="job-details">
+        <tr>
+            <td><strong>Type:</strong></td>
+            <td><%= job.jobType %></td>
+        </tr>
+        <tr>
+            <td><strong>Department:</strong></td>
+            <td><%= job.department %></td>
+        </tr>
+        <tr>
+            <td><strong>Period:</strong></td>
+            <td><%= job.period %></td>
+        </tr>
+        <tr>
+            <td><strong>Expected Salary:</strong></td>
+            <td>$<%= job.expectedSalary %></td>
+        </tr>
+        <tr>
+            <td><strong>Experience Required:</strong></td>
+            <td><%= job.experience %></td>
+        </tr>
+        <tr>
+            <td><strong>Description:</strong></td>
+            <td><%= job.jobDescription %></td>
+        </tr>
+        <tr>
+            <td><strong>Job Posted at:</strong></td>
+            <td><%
+                const createDate = new Date(job.createdAt);
+                const formattedDate1 = createDate.toLocaleDateString('en-GB', {
+                    day: '2-digit',
+                    month: 'short',
+                    year: 'numeric'
+                }).replace(/ /g, ' ');
+            %>
+            <%= formattedDate1 %></td>
+        </tr>
+        <tr>
+            <td><strong>Job Application Deadline:</strong></td>
+            <td><%
+                const deadlineDate = new Date(job.jobDeadline);
+                const formattedDate2 = deadlineDate.toLocaleDateString('en-GB', {
+                    day: '2-digit',
+                    month: 'short',
+                    year: 'numeric'
+                }).replace(/ /g, ' ');
+            %>
+            <%= formattedDate2 %></td>
+        </tr>
+    </table>
 
     <form action="/jobs/<%= job._id %>?_method=DELETE" method="POST">
         <button>Delete Job</button>
-   </form>
-    <a href="/jobs/<%=job._id%>/edit">Update Job</a>
-
+    </form>
+    
+    <a href="/jobs/<%= job._id %>/edit" class="update-link">Update Job</a>
 </body>
 </html>
+
+
+
+
+
+
+
+
+

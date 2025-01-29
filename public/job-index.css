@@ -1,0 +1,140 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+.job-list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two columns */
+    gap: 20px; /* Space between items */
+}
+
+.job-item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.job-item:hover {
+    box-shadow: 0 8px 16px rgba(0, 123, 255, 0.3);
+    transform: translateY(-5px);
+}
+
+.job-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.job-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.job-title {
+    font-size: 24px;
+    margin: 0;
+    color: #333;
+}
+
+.job-company, .job-location, .job-salary, .job-type, .job-deadline, .job-department {
+    margin: 0;
+    font-size: 16px;
+    color: #666;
+}
+
+.apply-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    align-self: flex-start;
+}
+
+.apply-button:hover {
+    background-color: #0056b3;
+}
+
+#search-area {
+    width: 97%;
+    padding: 10px;
+    margin-right: 2px;
+    padding-bottom: 0px;
+    padding-top: 7px;
+    margin-top: 35px;
+    background-color: #323232;
+    border-radius: 5px;
+    align-items: center;
+}
+
+#searchInput, #searchDepartment, #searchLocation {
+    width: 30%;
+    padding: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+#create-job {
+    width: 97%;
+    height: 100px;
+    padding: 10px;
+    margin-right: 2px;
+    padding-bottom: 0px;
+    padding-top: 7px;
+    margin-top: 20px;
+    background-color: #323232;
+    border-radius: 5px;
+    align-items: center;
+    bottom: 0px;
+}
+
+#create-job {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center content horizontally */
+    justify-content: center; /* Center content vertically */
+    text-align: center; /* Center text */
+    padding: 20px; /* Add some padding */
+  }
+  
+  .new-job-h {
+    margin-bottom: 20px; /* Add space below the heading */
+  }
+  
+  .create-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    text-decoration: none; /* Remove underline from link */
+    transition: background-color 0.3s ease; /* Smooth hover transition */
+  }
+  
+  .create-button:hover {
+    background-color: #0056b3;
+  }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .job-list {
+        grid-template-columns: 1fr; /* Single column on smaller screens */
+    }
+}
+

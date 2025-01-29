@@ -50,6 +50,12 @@ const jobsSchema = mongoose.Schema({
       createdAt: {
         type: Date,
         default: Date.now // Sets the date when the job was created
+      },
+
+      jobDeadline: {
+        type: Date,
+        required: true
+
       }
     });
 
